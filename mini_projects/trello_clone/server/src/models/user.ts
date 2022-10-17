@@ -1,35 +1,32 @@
 import { Schema, model } from "mongoose";
 import { UserDocument } from "../types/user.interface";
 import validator from "validator";
-import bcryptjs from 'bcryptjs'
+import bcryptjs from "bcryptjs";
 
-
-
-const userSchema = new Schema<UserDocument>(
+const userSchema = new Schema<UserDocument> (
     {
         email: {
             type: String,
-            required: [ true, "Email is required." ],
-            validate: [ validator.isEmail, "Invalid email." ],
+            required: [true, "Email is required"],
+            validate: [validator.isEmail, "invalid email"],
             createIndexes: { unique: true },
         },
         username: {
             type: String,
-            required: [ true, "Username is required." ],        
+            required: [true, "Username is required"],
         },
         password: {
             type: String,
-            required: [ true, "Password is required." ],
+            required: [true, "Password is required"],
             select: false,
         },
-
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 );
 
-userSchema.pre('save', async function (next) {
+userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
         return next();
     }
@@ -44,6 +41,7 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.methods.validatePassword = function (password: string) {
+    console.log("validatePassword", password, this);
     return bcryptjs.compare(password, this.password);
 };
 
