@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SocketService } from 'src/app/shared/services/socket.service';
 import { AuthService } from '../../services/auth.service';
-import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 
 @Component({
     selector: 'auth-register',
@@ -20,7 +20,8 @@ export class RegisterComponent {
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private socketService: SocketService
     ) { }
 
     onSubmit(): void {
@@ -28,6 +29,7 @@ export class RegisterComponent {
             next: (currentUser) => {
                 console.log('currentUser', currentUser);
                 this.authService.setToken(currentUser);
+                this.socketService.setupSocketConnection(currentUser);
                 this.authService.setCurrentUser(currentUser);
                 this.errorMessage = null;
                 this.router.navigateByUrl('/');
