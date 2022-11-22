@@ -16,7 +16,7 @@ module.exports.allJobs = (req, res) => {
 // get one
 module.exports.oneJob = (req, res) => {
     Job.findOne({_id: req.params.id})
-        .then(job => res.josn(job))
+        .then(job => res.json(job))
         .catch(err => res.status(400).json)
 
 }
@@ -31,10 +31,20 @@ module.exports.createJob = (req, res) => {
 
 // update
 module.exports.updateJob = (req, res) => {
+    Job.findOneAndUpdate(
+        {_id: req.params.id},
+        req.body,
+        {new: true}
+    )
+        .then(updatedJob => res.json(updatedJob))
+        .catch(err => res.status(400).json)
 
 }
 
 // delete
 module.exports.deleteJob = (req, res) => {
+    Job.deleteOne({_id: req.params.id})
+        .then(response => res.json(response))
+        .catch(err => res.status(400).json)
     
 }
