@@ -1,0 +1,7 @@
+#jobs_listed { border-collapse: collapse; width: 100%; }
+#jobs_listed td, #jobs_listed th { border: 1px solid rgb(97, 97, 96); padding: 8px; }
+
+#jobs_listed tr:nth-child(even){background-color: rgb(207, 207, 207);}
+#jobs_listed tr:hover { background-color: rgb(176, 216, 240);}
+
+#jobs_listed th { padding: 10px; text-align: left; letter-spacing: 0.5px; background-color: lightskyblue; color: white}
