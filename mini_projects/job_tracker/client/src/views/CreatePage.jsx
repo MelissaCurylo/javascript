@@ -25,30 +25,41 @@ const CreatePage = () => {
             <form onSubmit={handleSubmit}  >
                 <div>
                     <label className="col-20">Company: </label>
-                    <input type="text" id="company" name="company" placeholder="Company" value={company}  onChange={(e)=>setCompany(e.target.value)}></input>
+                    <div className="col-80">
+                        <input type="text" id="company" name="company" placeholder="Company" value={company}  onChange={(e)=>setCompany(e.target.value)}></input>
+                    </div>
                 </div>
 
                 <div>
                     <label className="col-20">Position Title: </label>
-                    <input type="text" id="title" name="title" placeholder="Enter Title"  value={title} onChange={(e)=>setTitle(e.target.value)}></input>
+                    <div className="col-80">
+                        <input type="text" id="title" name="title" placeholder="Enter Title"  value={title} onChange={(e)=>setTitle(e.target.value)}></input>
+                    </div>
                 </div>
 
                 <div>
                     <label className="col-20">Salary: </label>
-                    <input type="number" id="salary" name="salary" placeholder="Salary" value={salary}  onchange={(e)=>setSalary(e.target.value)}></input>               
+                    <div className="col-80">
+                        <input type="number" id="salary" name="salary" placeholder="Salary" value={salary}  onchange={(e)=>setSalary(e.target.value)}></input>               
+                    </div>
                 </div> 
 
                 <div>
-                    <input type="checkbox" id="isRemote" name="isRemote" checked={isRemote} onChange={(e)=>setIsRemote(e.target.checked)}></input>
+                    <div className="col-80">
+                        <input type="checkbox" id="isRemote" name="isRemote" checked={isRemote} onChange={(e)=>setIsRemote(e.target.checked)}></input>
+                    </div>
                     <label className="col-20">Remote?</label>
                 </div>
 
                 <div>
-                    <label className="col-20">Additional Notes: </label>
-                    <input type="textarea" id="textarea" name="textarea" placeholder="Any additional notes?" value={notes} ></input>
+                    <label htmlFor="col-20">Additional Notes: </label>
+                    <div className="col-80">
+                        <input type="textarea" id="textarea" name="textarea" placeholder="Any additional notes?" value={notes} ></input>
+                    </div>
                 </div>
-
-                <button type="submit" id="create_button">Add Job</button>
+                <div>
+                    <button type="submit" id="create_button">Add Job</button> 
+                </div>
 
 
 
