@@ -27,6 +27,7 @@ const Dashboard = () => {
                         <th>Company</th>
                         <th>Salary</th>
                         <th>Remote?</th>
+                        <th>Notes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,7 @@ const Dashboard = () => {
                                     <td>{eachJob.company}</td>
                                     <td>${eachJob.salary}</td>
                                     <td>{eachJob.isRemote?"Yes":"No"}</td>
+                                    <td>{eachJob.notes}</td>
                                 </tr>
                             )
                         })

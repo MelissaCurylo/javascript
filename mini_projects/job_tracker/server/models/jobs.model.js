@@ -18,6 +18,10 @@ const JobSchema = new mongoose.Schema({
     isRemote:{
         type: Boolean
     },
+    notes:{
+        type: String,
+        maxlength: [1500, "Max space available for notes is 1500 characters."]        
+    },
 }, { timestamps: true })
 
 module.exports.Job = mongoose.model('Job', JobSchema)
