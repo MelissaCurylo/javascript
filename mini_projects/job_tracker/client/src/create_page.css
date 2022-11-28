@@ -14,5 +14,21 @@ label { padding: 12px 0px; display: inline-block;}
 .col-20 { float: left; width: 20%; margin-top: 6px; }
 .col-80 { float: left; width: 80%; margin-top: 6px; }
 
+add_job_button { float: right; }
+
 /* revisit editing this later */
 @media screen and (max-width: 600px) { .col-20, .col-80, input[type=submit] { width: 100%; margin-top: 0; } }
+
+
+
+
+/* new form setup */
+
+.add_job_container {  }
+
+.row {  }
+
+.col-15 { }
+
+.col-85 {  }
+
