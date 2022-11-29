@@ -70,14 +70,15 @@ const CreatePage = () => {
                             <label className="col-80">Additional Notes: </label>                            
                         </div>
                         <div className='col-85'>
-                            <input type="textarea" id="textarea" name="textarea" placeholder="Any additional notes?" value={notes}  onChange={(e)=>setNotes(e.target.value)}></input>
+                            <input type="textarea" className="textarea" name="textarea" placeholder="Any additional notes?" value={notes}  onChange={(e)=>setNotes(e.target.value)}></input>
                         </div>
                     </div>
 
                     <div className='row'>
                         <input type="submit" value="Add Job"></input>
-                        <button type="submit" id="add_job_button">Add Job</button> 
                     </div>
+
+                    
                     
 
 
