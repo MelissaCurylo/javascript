@@ -18,29 +18,42 @@ const CreatePage = () => {
     const [isRemote, setIsRemote] = useState(true)
     const [notes, setNotes] = useState("")
 
+    const [errors, setErrors] = useState([])
+
     const navigate = useNavigate()
 
     const handleSubmit =(e) =>{
         e.preventDefault()
         axios.post("http://localhost:8000/api/jobs", {title, company, salary, isRemote, notes})
             .then(res=> navigate("/"))
-            .catch(err=> console.loge(err))
+            .catch(err=> {
+                const errResponse = err.response.data.errors
+                const tempErrArr = []
+                for(const eachKey in errResponse){
+                    tempErrArr.push(errResponse[eachKey].message)
+                } 
+                setErrors(tempErrArr)
+                // console.log(tempErrArr)
+                // console.log(errResponse)
+                // console.log(err.response.data)
+            })
     }
 
     return (
         <div className="add_job_form">
             <form onSubmit={handleSubmit}  >
-                <div>
-                    <label className="col-20">Company: </label>
-                    <div className="col-80">
-                        <input type="text" id="company" name="company" placeholder="Company" value={company}  onChange={(e)=>setCompany(e.target.value)}></input>
-                    </div>
-                </div>
-
+                
                 <div>
                     <label className="col-20">Position Title: </label>
                     <div className="col-80">
                         <input type="text" id="title" name="title" placeholder="Enter Title"  value={title} onChange={(e)=>setTitle(e.target.value)}></input>
+                    </div>
+                </div>
+
+                <div>
+                    <label className="col-20">Company: </label>
+                    <div className="col-80">
+                        <input type="text" id="company" name="company" placeholder="Company" value={company}  onChange={(e)=>setCompany(e.target.value)}></input>
                     </div>
                 </div>
 
@@ -69,8 +82,17 @@ const CreatePage = () => {
                     <button type="submit" className="add-job-btn">Add Job</button> 
                 </div>
 
-
+                <div className="col-20" id="cancel_btn_placement">
+                    <button type="button" className="cancel_btn" onClick={()=>navigate("/")} >Cancel</button> 
+                </div>
             </form>
+            {
+                errors.map((err, i) => {
+                    return(
+                        <p style={{color: "red"}}> {err} </p>
+                    )
+                })
+            }
 
 
         </div>

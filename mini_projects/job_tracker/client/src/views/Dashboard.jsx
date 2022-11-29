@@ -37,7 +37,7 @@ const Dashboard = () => {
                         jobs.map((eachJob, i) => {
                             return(
                                 <tr key={i}>
-                                    <td>{eachJob.title}</td>
+                                    <td> <Link to={`/jobs/${eachJob._id}`}> {eachJob.title} </Link></td>
                                     <td>{eachJob.company}</td>
                                     <td>${eachJob.salary}</td>
                                     <td>{eachJob.isRemote?"Yes":"No"}</td>
