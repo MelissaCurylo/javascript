@@ -1,6 +1,8 @@
+import './../create_page.css';
 import React, {useState} from 'react'
 import axios from "axios"
-import './../create_page.css';
+import {useNavigate} from "react-router-dom"
+
 
 
 // 1. Need a from for input.
@@ -16,74 +18,62 @@ const CreatePage = () => {
     const [isRemote, setIsRemote] = useState(true)
     const [notes, setNotes] = useState("")
 
-    const handleSubmit =(e) =>{
+    const navigate = useNavigate()
 
+    const handleSubmit =(e) =>{
+        e.preventDefault()
+        axios.post("http://localhost:8000/api/jobs", {title, company, salary, isRemote, notes})
+            .then(res=> navigate("/"))
+            .catch(err=> console.loge(err))
     }
 
     return (
-            
-            <div className='add_job_container'>
-                <form onSubmit={handleSubmit}>
-
-                    <div className='row'>
-                        <div className='col-15'>
-                            <label className="col-15">Company: </label>
-                        </div>
-                        <div className='col-85'>
-                            <input type="text" id="company" name="company" placeholder="Company" value={company}  onChange={(e)=>setCompany(e.target.value)}></input>
-                        </div>
+        <div className="add_job_form">
+            <form onSubmit={handleSubmit}  >
+                <div>
+                    <label className="col-20">Company: </label>
+                    <div className="col-80">
+                        <input type="text" id="company" name="company" placeholder="Company" value={company}  onChange={(e)=>setCompany(e.target.value)}></input>
                     </div>
+                </div>
 
-
-                    <div className='row'>
-                        <div className='col-15'>
-                            <label className="col-20">Position Title: </label>
-                        </div>
-                        <div className='col-85'>
-                            <input type="text" id="title" name="title" placeholder="Enter Title"  value={title} onChange={(e)=>setTitle(e.target.value)}></input>
-                        </div>
+                <div>
+                    <label className="col-20">Position Title: </label>
+                    <div className="col-80">
+                        <input type="text" id="title" name="title" placeholder="Enter Title"  value={title} onChange={(e)=>setTitle(e.target.value)}></input>
                     </div>
+                </div>
 
-
-                    <div className='row'>
-                        <div className='col-15'>
-                            <label className="col-20">Salary: </label>
-                        </div>
-                        <div className='col-85'>
-                            <input type="number" id="salary" name="salary" placeholder="Salary" value={salary}  onchange={(e)=>setSalary(e.target.value)}></input>               
-                        </div>
+                <div>
+                    <label className="col-20">Salary: </label>
+                    <div className="col-80">
+                        <input type="number" id="salary" name="salary" placeholder="Salary" value={salary}  onChange={(e)=>setSalary(e.target.value)}></input>               
                     </div>
+                </div> 
 
+                <div>
+                    <label className="col-20">Remote?</label> 
+                    <div className="col-80">
+                        <input type="checkbox" id="isRemote" name="isRemote" checked={isRemote}  onChange={(e)=>setIsRemote(e.target.checked)}></input>
+                    </div>  
+                </div>
 
-                    <div className='row'>
-                        <div className='col-15'>
-                            <label className="col-20">Remote?</label> 
-                        </div>
-                        <div className='col-85'>
-                            <input type="checkbox" id="isRemote" name="isRemote" checked={isRemote} onChange={(e)=>setIsRemote(e.target.checked)}></input>
-                        </div>
+                <div>
+                    <label className="col-80" >Additional Notes: </label>
+                    <div className="col-80">
+                        <input type="textarea" id="textarea" name="textarea" placeholder="Any additional notes?" value={notes}  onChange={(e)=>setNotes(e.target.value)}></input>
                     </div>
+                </div>
+
+                <div className="col-20" id="add_job_button">
+                    <button type="submit" className="add-job-btn">Add Job</button> 
+                </div>
 
 
-                    <div className='row'>
-                        <div className='col-15'>
-                            <label className="col-80">Additional Notes: </label>                            
-                        </div>
-                        <div className='col-85'>
-                            <input type="textarea" className="textarea" name="textarea" placeholder="Any additional notes?" value={notes}  onChange={(e)=>setNotes(e.target.value)}></input>
-                        </div>
-                    </div>
-
-                    <div className='row'>
-                        <input type="submit" value="Add Job"></input>
-                    </div>
-
-                    
-                    
+            </form>
 
 
-                </form>
-            </div>
+        </div>
     )
 }
 

@@ -9,7 +9,7 @@ module.exports.test = (req, res) => {
 module.exports.allJobs = (req, res) => {
     Job.find()
         .then(jobs => res.json(jobs))
-        .catch(err => res.status(400).json)
+        .catch(err => res.status(400).json(err))
 
 }
 
@@ -17,7 +17,7 @@ module.exports.allJobs = (req, res) => {
 module.exports.oneJob = (req, res) => {
     Job.findOne({_id: req.params.id})
         .then(job => res.json(job))
-        .catch(err => res.status(400).json)
+        .catch(err => res.status(400).json(err))
 
 }
 
@@ -25,7 +25,7 @@ module.exports.oneJob = (req, res) => {
 module.exports.createJob = (req, res) => {
     Job.create(req.body)
         .then(newJob => res.json(newJob))
-        .catch(err =>res.status(400).json)
+        .catch(err =>res.status(400).json(err))
 
 }
 
@@ -37,7 +37,7 @@ module.exports.updateJob = (req, res) => {
         {new: true}
     )
         .then(updatedJob => res.json(updatedJob))
-        .catch(err => res.status(400).json)
+        .catch(err => res.status(400).json(err))
 
 }
 
@@ -45,6 +45,6 @@ module.exports.updateJob = (req, res) => {
 module.exports.deleteJob = (req, res) => {
     Job.deleteOne({_id: req.params.id})
         .then(response => res.json(response))
-        .catch(err => res.status(400).json)
+        .catch(err => res.status(400).json(err))
     
 }
