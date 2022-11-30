@@ -14,7 +14,7 @@ import {useNavigate} from "react-router-dom"
 const CreatePage = () => {
     const [title, setTitle] = useState("")
     const [company, setCompany] = useState("")
-    const [salary, setSalary] = useState(100000)
+    const [salary, setSalary] = useState(40000)
     const [isRemote, setIsRemote] = useState(true)
     const [notes, setNotes] = useState("")
 
