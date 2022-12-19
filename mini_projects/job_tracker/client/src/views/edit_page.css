@@ -1,0 +1,27 @@
+* { box-sizing: border-box; } 
+
+/* input[type=submit] { width: 100%; } */
+
+input[type=text], [type="number"], [type="textarea"], select { resize: vertical; width: 100%; padding: 10px; border: 1px solid rgba(204, 204, 204, 0.945); border-radius: 4px; }
+
+label { padding: 10px 15px 15px 0; display: inline-block;}
+
+input[type=submit] { background-color: #7c8895; color: #f2f2f2; float: right; border: none; border-radius: 4px; cursor: pointer; padding: 14px; }
+
+input[type=submit]:hover { background-color: #1380e6; }
+/* edit this later */
+/* .add-job-btn {background-color: #1380e6; } */
+
+.update_job_container { background-color: #f2f2f2; border-radius: 5px; padding: 18px; }
+
+.col-15 { float:left; width: 15%; margin-top: 6px;  }
+
+.col-85 { float: left; width: 85%; margin-top: 6px; }
+
+.row:after { content: ""; display: table; clear: both; } /* clears the float after the columns */
+/* 
+input[type=textarea] { resize: both; overflow: auto;  } */
+.textarea { height: 150px; resize: both; overflow: auto;}
+
+/* browser responsiveness */
+@media screen and (max-width: 600px) { .col-20, .col-80, input[type=submit] { width: 100%; margin-top: 0; } }
